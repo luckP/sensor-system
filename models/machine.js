@@ -54,7 +54,7 @@ const machineSchema = new mongoose.Schema({
  * Middleware to update the updateDate field before saving the document.
  * This ensures that the updateDate is always up-to-date when the document is saved.
  */
-machineSchema.pre('save', function(){
+machineSchema.pre('save', function(next){
     this.updateDate = new Date();
     next();
 });

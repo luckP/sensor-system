@@ -51,7 +51,7 @@ const start = async () => {
   app.use('/api', router);
 
   //  Mount admin page
-  app.use(admin.options.rootPath, adminRouter)
+  app.use(admin.options.rootPath, adminRouter);
 
   // Route for handling GET requests to the root URL ("/")
   app.get('/', (req, res) => {
