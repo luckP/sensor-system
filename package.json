@@ -1,0 +1,35 @@
+{
+  "name": "sensor-system-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch app.js"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luckP/sensor-system.git"
+  },
+  "keywords": [
+    "sensor"
+  ],
+  "author": "Lucas Parada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luckP/sensor-system/issues"
+  },
+  "homepage": "https://github.com/luckP/sensor-system#readme",
+  "dependencies": {
+    "@adminjs/express": "^6.1.0",
+    "@adminjs/mongoose": "^4.1.0",
+    "adminjs": "^7.7.4",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.0",
+    "express-cors": "^0.0.3",
+    "express-validator": "^7.0.1",
+    "mongoose": "^8.2.2",
+    "winston": "^3.12.0"
+  }
+}
