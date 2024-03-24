@@ -21,7 +21,7 @@ const machineSchema = new mongoose.Schema({
      * @type {Date}
      * @default Current date and time
      */
-    createDate:{
+    createDate: {
         type: Date,
         default: Date.now
     },
@@ -54,7 +54,7 @@ const machineSchema = new mongoose.Schema({
  * Middleware to update the updateDate field before saving the document.
  * This ensures that the updateDate is always up-to-date when the document is saved.
  */
-machineSchema.pre('save', function(next){
+machineSchema.pre('save', function (next) {
     this.updateDate = new Date();
     next();
 });

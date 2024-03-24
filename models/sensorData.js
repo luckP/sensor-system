@@ -1,56 +1,51 @@
 /**
- * Represents sensor data captured at a specific point in time.
- * Sensor data typically includes measured values, raw values, and the timestamp of the measurement.
- * This schema defines the structure for storing sensor data records in the database.
+ * Represents a sensor used in an industrial setting.
+ * Sensors are devices that measure physical properties such as temperature, pressure, etc.
+ * This schema defines the structure for storing information about sensors, including their properties and associations.
  */
 import mongoose from 'mongoose';
 
 const sensorDataSchema = new mongoose.Schema({
     /**
-     * The measured value captured by the sensor.
+     * The minimum value that the sensor can measure.
      * @type {Number}
-     * @required
      */
     value: {
         type: Number,
-        required: true
+        require: true
     },
     /**
-     * The raw value captured by the sensor.
+     * The maximum value that the sensor can measure.
      * @type {Number}
-     * @required
      */
     rawValue: {
         type: Number,
-        required: true
+        require: true
     },
     /**
-     * The timestamp indicating when the sensor data was captured.
+     * The date when the sensor was created.
      * @type {Date}
      * @default Current date and time
-     * @required
      */
     date: {
         type: Date,
         default: Date.now,
-        required: true
     },
     /**
-     * The ID of the sensor associated with the sensor data.
-     * This field references a Sensor document representing the sensor that captured the data.
+     * The machine associated with the sensor.
+     * This field references a MachineModel document representing the machine to which the sensor is attached.
      * @type {mongoose.Schema.Types.ObjectId}
-     * @ref 'Sensor'
+     * @ref 'SensorModel'
      * @required
      */
-    sensorId: {
+    sensor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Sensor',
-        required: true
+        require: true
     }
 });
-
 /**
- * Represents a Mongoose model for the SensorData schema.
+ * Represents a Mongoose model for the Sensor schema.
  * @typedef {Object} SensorData
  */
 const SensorData = mongoose.model('SensorData', sensorDataSchema);

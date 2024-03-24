@@ -12,6 +12,7 @@ import * as AdminJSMongoose from '@adminjs/mongoose';
 // Import the models
 import Machine from './models/machine.js';
 import Sensor from './models/sensor.js';
+import SensorData from './models/sensorData.js';
 
 /**
  * Registers AdminJSMongoose adapter with AdminJS to support Mongoose models.
@@ -27,7 +28,7 @@ AdminJS.registerAdapter({
  * @type {Object}
  */
 const adminOptions = {
-    resources: [Machine, Sensor],
+    resources: [Machine, Sensor, SensorData],
 };
 
 /**

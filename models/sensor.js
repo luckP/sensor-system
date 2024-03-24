@@ -11,7 +11,7 @@ const sensorSchema = new mongoose.Schema({
      * @type {String}
      * @required
      */
-    name:{
+    name: {
         type: String,
         require: true
     },
@@ -23,15 +23,14 @@ const sensorSchema = new mongoose.Schema({
     createDate: {
         type: Date,
         default: Date.now,
-
     },
     /**
      * The unit of measurement used by the sensor.
-     * @type {Number}
+     * @type {String}
      * @required
      */
     unitOfMeasurement: {
-        type: Number,
+        type: String,
         require: true
     },
     /**
