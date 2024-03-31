@@ -6,6 +6,10 @@ import sensorRouter from './sensorRouter.js';
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    res.send('Welcome to the api');
+});
+
 // Mount each router under its respective path
 router.use('/sensor-data', sensorDataRouter);
 router.use('/machine', machineRouter);

@@ -6,7 +6,7 @@
 import express from 'express';
 import { body, param, validationResult } from 'express-validator';
 import SensorData from '../models/sensorData.js';
-import { errorLogger } from '../logger.js';
+import { errorLogger, debugLogger } from '../logger.js';
 
 const router = express.Router();
 
@@ -134,5 +134,33 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+/**
+ * Route: GET /sensors/:sensorId/sensor-data
+ * Description: Retrieve sensor data for a specific sensor ID within a specified date range
+ * Request Params:
+ *  - sensorId: MongoDB ObjectId (required)
+ * Request Query Params:
+ *  - startDate: Start date of the range (ISO Date string)
+ *  - endDate: End date of the range (ISO Date string)
+ */
+router.get('/:sensorId/sensor-data',
+  async (req, res) => {
+    const sensorId = req.params.sensorId;
+    const { startDate, endDate } = req.query;
+
+    const query = { sensor: sensorId };
+    if (startDate && endDate) {
+      query.date = { $gte: new Date(startDate), $lte: new Date(endDate) };
+    }
+
+    try {
+      const sensorData = await SensorData.find(query);
+      res.status(200).json(sensorData);
+    } catch (error) {
+      errorLogger.error(`${req.method} ${req.url} ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  });
 
 export default router;

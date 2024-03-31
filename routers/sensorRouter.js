@@ -126,4 +126,22 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+/**
+ * Route: GET /sensors/:sensorId/sensor-data
+ * Description: Retrieve sensor data for a specific sensor ID
+ * Request Params:
+ *  - sensorId: MongoDB ObjectId (required)
+ */
+router.get('/:machineId/sensor',
+    async (req, res) => {
+        const machineId = req.params.machineId;
+        try {
+            const sensors = await Sensor.find({ machine: machineId });
+            res.status(200).json(sensors);
+        } catch (error) {
+            errorLogger.error(`${req.method} ${req.url} ${error.message}`);
+            res.status(500).json({ message: error.message });
+        }
+    });
+
 export default router;

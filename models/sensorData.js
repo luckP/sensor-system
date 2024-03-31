@@ -44,6 +44,11 @@ const sensorDataSchema = new mongoose.Schema({
         require: true
     }
 });
+
+// Define index on the date field
+sensorDataSchema.index({ date: 1, sensorId: 1 });
+
+
 /**
  * Represents a Mongoose model for the Sensor schema.
  * @typedef {Object} SensorData
